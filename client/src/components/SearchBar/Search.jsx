@@ -94,7 +94,7 @@ export default function Search (props) {
                                 )
                             })
                         }
-                        <li href="/"><a href="" className="link" style={{color: '#3876F9'}}>{_defaultSearchResult}</a></li>
+                        <li><a href="/" className="link" style={{color: '#3876F9'}}>{_defaultSearchResult}</a></li>
                     </ul>
                 </div>
             </div>

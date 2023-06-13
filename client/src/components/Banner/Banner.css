@@ -1,0 +1,28 @@
+.Banner {
+    border: 1px solid transparent;
+    background-color: #E31837;
+    height: 125px;
+}
+
+.Banner > .content {
+    width: 60%;
+    margin: auto;
+    height: 100%;
+    position: relative;
+}
+
+.Banner > .content > .title {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    bottom: 36px;
+}
+
+.Banner > .content > .subTitle {
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+    position: absolute;
+    bottom: 4px;
+}
