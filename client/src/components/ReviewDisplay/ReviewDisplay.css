@@ -1,0 +1,125 @@
+.ReviewDisplay {
+    /* border: 1px solid red; */
+    background-color: white;
+    display: flex;
+    width: 40%;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px #b3b3b3;
+    margin-top: 16px;
+    min-width: 600px;
+}
+
+.ReviewDisplay > .profileDisplay {
+    /* border: 1px solid blue; */
+    padding-left: 16px;
+    padding-top: 16px;
+
+}
+
+.ReviewDisplay > .profileDisplay > img {
+    border-radius: 100%;
+    width: 96px;
+    width: 96px;
+    /* border: 1px solid gray; */
+    filter: drop-shadow(1px 1px 1px black);
+}
+
+.ReviewDisplay > .reviewContainer > .container  {
+    /* border: 1px solid green; */
+    display: flex;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .contentContainer {
+    /* border: 1px solid black; */
+}
+
+.ReviewDisplay > .reviewContainer > .container > .contentContainer > .header {
+    /* border: 1px solid purple; */
+    padding-top: 16px;
+    padding-left: 8px;
+    padding-bottom: 8px;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .contentContainer > .header > .name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .contentContainer > .header > .subTitle {
+    font-size: 15px;
+    font-weight: 500;
+    color: gray;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .contentContainer > .review {
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 8px;
+    padding-bottom: 16px;
+}
+
+.tags {
+    font-weight: 500;
+    color: #3876F9;
+    display: block;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .ratingContainer {
+    /* border: 1px solid yellow; */
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating {
+    /* border: 1px solid orange; */
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating > .ratingBox {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating > .ratingBox > p {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating > .ratingTitle {
+    font-weight: 500;
+    color: #747474;
+    padding-left: 8px;
+}
+
+.ReviewDisplay > .reviewContainer > .reviewRatings {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+.ReviewDisplay > .reviewContainer > .reviewRatings > .ratingBtn {
+    display: flex;
+    /* border: 1px solid black; */
+    align-items: center;
+    margin-right: 32px;
+}
+
+.ReviewDisplay > .reviewContainer > .reviewRatings > .ratingBtn > button {
+    font-size: 16px;
+    height: fit-content;
+    padding: 0%;
+    margin: 0%;
+}
