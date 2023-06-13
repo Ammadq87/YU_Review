@@ -1,0 +1,13 @@
+.Course {
+
+}
+
+.Course > .CourseReviews {
+    width: 60%;
+    margin: auto;
+}
+
+.Course > .CourseReviews > .ReviewDisplay {
+    float: left;
+    width: 60%;
+}
