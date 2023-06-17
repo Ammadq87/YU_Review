@@ -15,18 +15,8 @@ function App() {
 
   return (
     <div className="root">
-      {/* <button className='selectedBtn'>Click Me!</button>
-      <button className='unselectedBtn'>Click Me Now!</button>
-      <button className='saveBtn'>Save</button>
-      <a href="/" className='link'>Link</a>
-      <input type="text" className="textInput" />
-      <h5>Welcome 👋</h5>
-
-      <Notification data={notificationConfig}/> */}
+      {/* <Notification data={notificationConfig}/> */}
       <Navbar/>
-      
-      {/* <ReviewDisplay/> */}
-
       <Router>
         <Routes>
           <Route path='/' element={<Home/>}/>
