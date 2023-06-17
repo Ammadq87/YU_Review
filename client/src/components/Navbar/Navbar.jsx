@@ -13,7 +13,7 @@ export default function Navbar () {
 
                 <div className="links">
                     <ul>
-                        <li><a href="/login" className="link" style={{color: '#E31837'}}>Register</a></li>
+                        <li><a href="/register" className="link" style={{color: '#E31837'}}>Register</a></li>
                         <li><a href="/login" className="link" style={{color: '#E31837'}}>Login</a></li>
                     </ul>
                 </div>

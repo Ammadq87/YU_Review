@@ -10,7 +10,7 @@ export default function Home () {
 
     return (
         <div className="Home">
-            <h1>Welcome 👋</h1>
+            <h1 className='font-bold text-3xl'>Welcome 👋</h1>
             <div className="intro">
                 <p>Hi there fellow/incoming Lion! Explore course and professor 
                 reviews from YorkU students. You can also plan out your next 
