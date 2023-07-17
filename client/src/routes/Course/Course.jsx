@@ -1,4 +1,4 @@
-import './Course.css';
+// import './Course.css';
 import Banner from "../../components/Banner/Banner"
 import ReviewDisplay from "../../components/ReviewDisplay/ReviewDisplay"
 
@@ -11,8 +11,23 @@ export default function Course () {
     return (
         <div className="Course">
             <Banner data={bannerConfig}/>
-            <div className="CourseReviews">
+            <div className="border border-black w-3/5 m-auto">
                 <ReviewDisplay/>
+
+                <div
+                    className="border border-blue p-2"
+                    id="actionCenter"
+                >
+                    <button
+                        className="border border-red py-4 px-2 font-bold text-white bg-red shadow-md"
+                        onClick={() => {
+                            const code = location.href.split('/')[4];
+                            window.location = `/review/${code}`;
+                        }}
+                    >Add Your Review</button>
+                </div>
+
+
             </div>
         </div>
     )
