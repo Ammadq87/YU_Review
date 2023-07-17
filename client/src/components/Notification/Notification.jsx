@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Notification (props) {
     const {type, text} = props.data;
 
-    const showToastMessage = () => {
         if (type === 'error') {
             toast.error(text, {
                 position: toast.POSITION.TOP_RIGHT
@@ -32,10 +31,8 @@ export default function Notification (props) {
                 position: toast.POSITION.TOP_RIGHT
             });
         }
-    };
     return (
         <div>
-            <button onClick={showToastMessage}>Notify</button>
             <ToastContainer />
         </div>
     );
