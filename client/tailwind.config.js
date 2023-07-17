@@ -4,15 +4,7 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    colors: {
-      red: '#E31837',
-      lightred: '#f81a3b',
-      blue: '#3876F9',
-      lightblue: '#5088ff',
-      lightgray: '#ECECEC',
-      gray: '#747474',
-      darkgray: '#dad7d7'
-    },
+    
     screens: {
       'sm': '640px',
       'md': '768px',
@@ -57,7 +49,28 @@ export default {
       80: '20rem',
       96: '24rem',
     },
-    extend: {},
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+    },
+    extend: {
+      colors: {
+        red: '#E31837',
+        lightred: '#f81a3b',
+        blue: '#3876F9',
+        lightblue: '#5088ff',
+        lightgray: '#ECECEC',
+        gray: '#747474',
+        darkgray: '#dad7d7',
+        black: '#1E1E1E',
+        white: 'white'
+      },
+    },
   },
   plugins: [],
 }
