@@ -1,61 +1,44 @@
 import Banner from "../../components/Banner/Banner"
 
 const bannerConfig = {
-    title:  `${location.href.split('/')[4].split('-').splice(1,2).join('-')}`,
-    subTitle: 'Software Design'
+    title:  `Rate: ${location?.href?.split('/')[4]?.split('-').splice(1,2).join('-')}`,
+    subTitle: 'Software Design' //retrieve from sessionStorage
 };
 
 export default function Review () {
+    const isCourseReview = location?.href?.split('/')[4].indexOf('-') !== -1;
+
+
     return (
         <div>
             <Banner data={bannerConfig}/>
-            <form className="bg-white drop-shadow-md mt-8 w-2/5 m-auto rounded-md p-4" action="">
-            <div>
-                <p className="font-bold text-3xl">Review</p>
-            </div>
+            <div
+                id="parent"
+            >
 
-            <div className="w-full m-auto flex mt-4">
-                <input 
-                    className={`w-full bg-lightgray text-lg p-2 mr-2 font-bold`}
-                    value={location.href.split('/')[4]} readOnly/>
+                <form action="">
 
-                <input 
-                    className={`w-full bg-lightgray text-lg p-2 ml-2 font-bold`}
-                    type="text" placeholder="Professor" required/>
-            </div>
+                    {
+                        isCourseReview &&
+                        <div>
+                            <p>Professor: </p>
+                            <input type="text" placeholder="Name"/>
+                        </div> 
+                    }
 
-            <div className="w-full m-auto">
-                <input 
-                    className={`w-full bg-lightgray text-lg p-2 mt-4 font-bold`}
-                    type="email" placeholder="Email" required/>
-            </div>
+                    {
+                        isCourseReview &&
+                        <div>
+                            <p>Course: </p>
+                            <input type="text" placeholder="Name"/>
+                        </div> 
+                    }
 
-            <div className="w-full m-auto">
-                <input 
-                    className={`w-full bg-lightgray text-lg p-2 mt-4 font-bold`}
-                    type="password" placeholder="Password" required/>
-            </div>
+                    
 
-            <div className="w-full m-auto">
-                {}
-                <input 
-                    className={`w-full bg-lightgray text-lg p-2 mt-4 font-bold`}
-                    type="password" placeholder="Confirm Password" required/>
-            </div>
+                </form>
 
-            <div className="mt-4">
-                <a 
-                    className="text-blue font-bold"
-                    href="/">Have an account already?</a>
             </div>
-
-            <div className="">
-                <button
-                    className="bg-red px-8 py-2 mt-4 font-bold text-white hover:bg-lightred transition delay-50 active:transform active:scale-95"
-                    type="submit"
-                >Get Started!</button>
-            </div>
-        </form>
         </div>
     )
 }
