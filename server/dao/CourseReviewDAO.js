@@ -22,15 +22,15 @@ class CourseReviewDAO extends Connection {
                     ?
                 );
                 `, [
-                    reviewData.Review,
+                    reviewData.review,
                     reviewData.CourseID, 
-                    reviewData.ProfessorID,
+                    reviewData.professorId,
                     reviewData.DatePosted, 
                     reviewData.UserID, 
-                    reviewData.Difficulty,
-                    reviewData.Useful, 
-                    reviewData.Retake, 
-                    reviewData.LikedCourse, 
+                    reviewData.difficulty,
+                    reviewData.useful, 
+                    reviewData.retake, 
+                    reviewData.liked, 
                     reviewData.ReviewLikes, 
                     reviewData.ReviewDislikes
                 ], (err) => {
