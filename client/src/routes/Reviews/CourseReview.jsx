@@ -4,6 +4,7 @@ import Banner from "../../components/Banner/Banner";
 import Rating from "../../components/Rating/Rating";
 import CourseReviewModel from "../../models/CourseReviewModel";
 import { useState } from "react";
+import Notification from "../../components/Notification/Notification";
 
 const bannerConfig = {
     title:  `Reviewing: ${location?.href?.split('/')[5]?.split('-').splice(1,2).join('-')}`,
@@ -16,7 +17,19 @@ export default function CourseReview() {
     const [recommend, setRecommend] = useState(false);
     const [content, setContent] = useState('');
     const [prof, setProf] = useState('');
+    const [difficult, setDifficulty] = useState(-1);
+    const [useful, setUsefulness] = useState(-1);
+    const [submitted, setSubmitted] = useState(null);
+    const [invalidForm, setInvalidForm] = useState(null);
     const review = new CourseReviewModel();
+
+    const handleSetUseful = (i) => {
+        setUsefulness(i);
+      };
+    
+    const handleSetDifficulty = (i) => {
+        setDifficulty(i);
+    };
 
     return (
         <div>
@@ -25,19 +38,27 @@ export default function CourseReview() {
                 className="bg-white m-auto mt-8 w-3/5 p-4"
             >
                 <h1 className='ml-4 font-bold text-3xl'>Your Review</h1>
+                
+                {/* //ToDo: Search input has to be updated so that it can provides a list of professors to choose from */}
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
                     <p className="text-black font-semibold">Professor:</p>
-                    <input onChange={(e) => setProf(e.target.value)} type="text" placeholder="Professor Name" className="my-2 w-4/5 border border-lightgray p-2 rounded-sm"/>
+                    <input onChange={(e) => setProf(e.target.value)} type="text" placeholder="Professor Name" className="my-2 w-4/5 border border-lightgray p-2 rounded-sm block"/>
+                    {prof && 
+                    <p className="text-sm">Want to rate
+                        <a className="text-blue font-bold"
+                        href="/"> {prof}</a>?
+                    </p>
+                    }
                 </div>
 
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
-                    <p className="text-black font-semibold">How Difficult was {bannerConfig?.title.split(' ')[1]}</p>
-                    <Rating type={'Difficulty'}/>
+                    <p className="text-black font-semibold">How Difficult was {bannerConfig?.title.split(' ')[1]}? <span className="text-red">*</span></p>
+                    <Rating type={'Difficulty'} setValue={handleSetDifficulty} />
                 </div>
 
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
-                    <p className="text-black font-semibold">How useful was {bannerConfig?.title.split(' ')[1]}</p>
-                    <Rating type={'Useful'}/>
+                    <p className="text-black font-semibold">How useful was {bannerConfig?.title.split(' ')[1]}? <span className="text-red">*</span></p>
+                    <Rating type={'Useful'} setValue={handleSetUseful} />
                 </div>
 
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray flex items-center justify-between">
@@ -71,7 +92,7 @@ export default function CourseReview() {
                 </div>
 
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
-                    <p className="text-black font-semibold">Your Comments:</p>
+                    <p className="text-black font-semibold">Your Comments: <span className="text-red">*</span></p>
                     <div className="mt-2 h-48 border border-lightgray rounded-sm">
                         <textarea className="w-full h-full p-2" placeholder={`My experience with ${bannerConfig?.title.split(' ')[1]} is...`}
                         onChange={(e) => {setContent(e.target.value)}}
@@ -81,18 +102,38 @@ export default function CourseReview() {
 
                 <button 
                     type="button"
-                    className="ml-4 p-4 font-bold text-lg px-8 py-2 bg-blue text-white m-4 ml-0"
+                    className="ml-4 p-4 font-bold text-lg px-8 py-2 bg-blue text-white m-4"
                     onClick={() => {
                         review.setProfessor(prof);
                         review.setLiked(liked);
                         review.setReview(content);
                         review.setRetake(retake);
                         review.setRecommended(recommend);
-                        review.submitCourseReview();
+                        review.setDifficulty(difficult);
+                        review.setUseful(useful);
+
+                        if (review.validInformation()) {
+                            setSubmitted(review.submitCourseReview());
+                            setTimeout(() => {setSubmitted(null)}, 5000);
+                        } else {
+                            setInvalidForm(true);
+                            setTimeout(() => {setInvalidForm(null)}, 5000);
+                        }
                     }}
                 >Add Review</button>
-            </form>
 
+                {submitted &&
+                <Notification data={{type: 'success', text:'Review Submitted!'}}/>
+                }
+
+                {submitted === false &&
+                <Notification data={{type: 'error', text:'Something went wrong!'}}/>
+                }
+
+                {invalidForm &&
+                <Notification data={{type: 'error', text:'Please fill out the required fields'}}/>
+                }
+            </form>
         </div>
     )
 }
@@ -101,7 +142,17 @@ export default function CourseReview() {
 function generateBannerSubtitle() {
     const dept = location?.href?.split('/')[5]?.substring(0, 2);
     const map = {
-        'LE': 'Electrical Engineering & Computer Science'
-    }
+        'LE': 'Electrical Engineering & Computer Science - LE',
+        "AP": "Faculty of Liberal Arts & Professional Studies - AP",
+        "HH": "Faculty of Health - HH",
+        "FA": "School of the Arts, Media, Performance & Design - FA",
+        "GL": "College universitaire Glendon - GL",
+        "ED": "Faculty of Education - ED",
+        "SB": "Schulich School of Business - SB",
+        "SC": "Faculty of Science - SC",
+        "EU": "Faculty of Environmental & Urban Change - EU",
+        "LW": "Osgoode Hall Law School - LW",
+        "GS:": "Faculty of Graduate Studies - GS"
+    };
     return map[dept];
 }

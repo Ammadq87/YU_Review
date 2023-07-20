@@ -1,17 +1,17 @@
 import axios from "axios";
 
 export default class CourseReviewModel {
-    professorId=-1;
-    difficulty=1;
-    useful=1;
-    liked=false;
-    recommend=false;
-    review='';
-    retake=false;
-    ReviewLikes=0;
-    ReviewDislikes=0;
+    professorId = null;
+    difficulty = -1;
+    useful = -1;
+    liked = false;
+    recommend = false;
+    review = '';
+    retake = false;
+    ReviewLikes = 0;
+    ReviewDislikes = 0;
     DatePosted = new Date().toISOString().slice(0, 10);
-    CourseID=this.generateCourseID();
+    CourseID = this.generateCourseID();
 
     db = axios.create({
         baseURL: 'http://localhost:3000/api'
@@ -26,11 +26,18 @@ export default class CourseReviewModel {
                     resolve(result);
                 }, 1000);
             });
-    
-            console.log(submitted);
+            return submitted['data'];
         } catch (error) {
             console.error(error);
         }
+    }
+
+    validInformation() {
+        if (this.difficulty === -1 || this.useful === -1 || (!this.review || this.review.length === 0)){
+            console.log(this.professorId, this.difficulty, this.useful, this.review);
+            return false;
+        }
+        return true;
     }
 
     generateCourseID() {
@@ -40,9 +47,12 @@ export default class CourseReviewModel {
     }
 
     //#region Getters, setters
+    //ToDo: find professor by faculty instead
     async setProfessor(name) {
+        if (!name)
+            return;
         const id = await this.db.get(`/york/getProfessorId/${name}`);
-        this.professorId = id['data']['Id'];
+        this.professorId = id?.data?.Id;
     } 
 
     setDifficulty(n) {
@@ -61,15 +71,16 @@ export default class CourseReviewModel {
         this.recommend = n;
     }
 
+    getRetake() {
+        return this.retake;
+    }
+
     setReview(s) {
-        this.review = s;
+        this.review = s.trim();
     }
 
     setRetake(n) {
         this.retake = n;
     }
     //#endregion
-
-
-
 }

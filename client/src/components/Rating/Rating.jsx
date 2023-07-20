@@ -12,6 +12,11 @@ export default function Rating(props) {
     const colors = ['#1FAF47', '#91D772', '#FFE144', '#FFA944', '#E31837'];
     const [label, setLabel] = useState(labels[labels.length/2]);
     const [tmpLabel, setTmpLabel] = useState('');
+
+    const handleValue = (i) => {
+        props.setValue(i);
+      };
+
     return (
         <div className='w-fit m-auto h-20 mt-2'>
             {
@@ -44,13 +49,15 @@ export default function Rating(props) {
                                     const e = document.getElementById(`ratingBtn${type+i}`);
                                     e.style.color = colors[i];
                                     setLabel(labels[i].label);
+                                    handleValue(labels[i].value);
                                 } else {
                                     let e = document.getElementById(`ratingBtn${type+_selected}`);
                                     e.style.color = 'gray';
                                     setSelected(i);
                                     e = document.getElementById(`ratingBtn${type+i}`);
                                     e.style.color = colors[i];
-                                    setLabel(labels[i].label);                                    
+                                    setLabel(labels[i].label);   
+                                    handleValue(labels[i].value);
                                 }
                             }}
                         >

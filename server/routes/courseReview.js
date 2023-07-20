@@ -18,11 +18,9 @@ router.post('/submitReview', async (req, res) => {
     } else {
         const review = req.body;
         review['UserID'] = UserSession.UserID;
-        console.log(review);
         const submitted = await CourseReviewDAO.submitCourseReview(review);
         res.send(submitted);
     }
-
-})
+});
 
 module.exports = router;

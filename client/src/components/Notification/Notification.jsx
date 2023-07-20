@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
  */
 export default function Notification (props) {
     const {type, text} = props.data;
-
         if (type === 'error') {
             toast.error(text, {
                 position: toast.POSITION.BOTTOM_RIGHT
