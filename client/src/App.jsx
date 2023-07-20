@@ -9,6 +9,8 @@ import Course from './routes/Course/Course';
 import Login from './routes/Login/Login';
 import Register from './routes/Register/Register';
 import Profile from './routes/Profile/Profile';
+import Review from './routes/Reviews/Review';
+import CourseReview from './routes/Reviews/CourseReview';
 
 function App() {
   const notificationConfig = {
@@ -27,6 +29,7 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/course/:courseCode' element={<Course />}/>
           <Route path='/professor'/>
+          <Route path='/course/review/:courseCode' element={<CourseReview/>}></Route>
         </Routes>
       </Router>
     </div>

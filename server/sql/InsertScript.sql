@@ -24,3 +24,5 @@ INSERT INTO CourseReview VALUES
 (0, 'pretty interesting course', 'LE-EECS-3311-3.00', 3446, '2022-01-03', 4, 2, 1, 1, 0, 0, 0)
 ;
 
+INSERT INTO Professor VALUES 
+(-1, 'N/A');
