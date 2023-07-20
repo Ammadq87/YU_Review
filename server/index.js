@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const PORT = 3000;
 const cors = require('cors')
 const york = require('./routes/york.js')
+const user = require('./routes/user.js');
+const courseReview = require('./routes/courseReview.js');
 
 // api to use: https://yorkapi.isaackogan.com/v1/courses/info/FW_2022/LE-EECS-3311-3.00/teachers
 
@@ -19,7 +21,9 @@ app.get('/api', (req, res) => {
     res.send('YU-Reviews API')
 })
 
+app.use('/api/course/review', courseReview);
 app.use('/api/york', york);
+app.use('/api/user', user);
 
 app.listen(PORT, (err) => {
     if (err) 

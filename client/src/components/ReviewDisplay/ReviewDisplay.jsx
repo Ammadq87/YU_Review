@@ -4,6 +4,14 @@ import { faCircleUp, faCircleDown, faArrowUp, faArrowDown, faUpLong, faDownLong,
 
 export default function ReviewDisplay () {
     const ratings = [{title: 'Easiness', value:4}, {title: 'Difficulty', value: 1}]
+    const overall = () => {
+        let sum = 0;
+        ratings.forEach(rating => {
+            sum += rating.value;
+        })
+        return sum/ratings.length;
+    }
+    ratings.push({title: 'Overall', value: overall()});
     let tags = ['liked', 'wouldTakeAgain'];
     return (
         <div className="ReviewDisplay">
@@ -57,20 +65,25 @@ export default function ReviewDisplay () {
 
 const GenerateRating = (title, value, i) => {
     let _value = value;
+    console.log(title,value);
     if (title === 'Difficulty')
         _value = 6-value;
     
-    const colorMap = {
-        1: '#E31837',
-        2: '#FFA944',
-        3: '#FFE144',
-        4: '#91D772',
-        5: '#1FAF47'
-    };
+    let color = '';
+    if (value <= 1)
+        color = '#E31837';
+    else if (value <= 2)
+        color = '#FFA944';
+    else if (value <= 3)
+        color = '#FFE144';
+    else if (value <= 4)
+        color = '#91D772';
+    else if (value <= 5)
+        color = '#1FAF47';
 
     return (
         <div className="rating" key={i}>
-            <div className="ratingBox" style={{backgroundColor: colorMap[_value]}}>
+            <div className="ratingBox" style={{backgroundColor: color}}>
                 <p>{value}</p>
             </div>
             <p className="ratingTitle"> {title}

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   font-family: Inter;
   margin: 0%;
@@ -30,6 +34,7 @@ h1,h2,h3,h4,h5,h6 {
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .saveBtn {
@@ -52,7 +57,7 @@ button {
   font-weight: bold;
 }
 
-button, input {
+button{
   border-radius: 5px;
   border: 1px solid transparent;
   padding: 8px 16px 8px 16px;
