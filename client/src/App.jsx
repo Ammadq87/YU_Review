@@ -30,6 +30,7 @@ function App() {
           <Route path='/course/:courseCode' element={<Course />}/>
           <Route path='/professor'/>
           <Route path='/course/review/:courseCode' element={<CourseReview/>}></Route>
+          <Route path='/*'></Route>
         </Routes>
       </Router>
     </div>

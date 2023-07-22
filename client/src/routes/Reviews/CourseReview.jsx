@@ -3,7 +3,7 @@ import { faThumbsUp, faThumbsDown, faCircleCheck, faCircleXmark} from '@fortawes
 import Banner from "../../components/Banner/Banner";
 import Rating from "../../components/Rating/Rating";
 import CourseReviewModel from "../../models/CourseReviewModel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Notification from "../../components/Notification/Notification";
 
 const bannerConfig = {
@@ -21,7 +21,13 @@ export default function CourseReview() {
     const [useful, setUsefulness] = useState(-1);
     const [submitted, setSubmitted] = useState(null);
     const [invalidForm, setInvalidForm] = useState(null);
+    const [alreadySubmitted, setAlreadySubmitted] = useState(false);
     const review = new CourseReviewModel();
+
+    const handleSetSubmitted = async () => {
+        const x = await review.checkSubmission();
+        setAlreadySubmitted(x > 0);            
+    }
 
     const handleSetUseful = (i) => {
         setUsefulness(i);
@@ -31,6 +37,10 @@ export default function CourseReview() {
         setDifficulty(i);
     };
 
+    useEffect(() => {        
+        handleSetSubmitted();
+    }, []);
+
     return (
         <div>
             <Banner data={bannerConfig}/>
@@ -39,6 +49,11 @@ export default function CourseReview() {
             >
                 <h1 className='ml-4 font-bold text-3xl'>Your Review</h1>
                 
+                {
+                    alreadySubmitted &&
+                    <p className="text-red w-fit ml-4 text-sm">* You have already submitted a review. Your previous review will be overwritten with your latest ratings *</p>
+                }
+
                 {/* //ToDo: Search input has to be updated so that it can provides a list of professors to choose from */}
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
                     <p className="text-black font-semibold">Professor:</p>

@@ -17,6 +17,34 @@ export default class CourseReviewModel {
         baseURL: 'http://localhost:3000/api'
     });
 
+    async hasAlreadySubmitted() {
+        try {
+            const User = JSON.parse(sessionStorage.getItem('User'))['User'];
+            const id = User['ID'];
+           
+            const submitted = await new Promise((resolve) => {
+                setTimeout(() => {
+                    const result = this.db.get(`/course/review/checkSubmission/${id}`);
+                    resolve(result);
+                }, 1000);
+            });
+            return submitted;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async checkSubmission() {
+        try {
+            const User = JSON.parse(sessionStorage.getItem('User'))['User'];
+            const id = User['ID'];
+            const submitted = await this.db.get(`/course/review/checkSubmission/${id}`);
+            return submitted['data'][0]['Amount'];
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     async submitCourseReview() {
         try {
             const cr = this;

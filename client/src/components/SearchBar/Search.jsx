@@ -68,7 +68,7 @@ export default function Search (props) {
 */
     return (
 
-        <div className='w-full block items-center relative'>
+        <div className='w-full block items-center relative mx-4'>
 
             <div className='flex items-center w-full mt-4'>
                 <FontAwesomeIcon 

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import Notification from '../../components/Notification/Notification';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
 
 export default function Profile () {
     const User = JSON.parse(sessionStorage.getItem('User'))['User'];
@@ -41,7 +43,11 @@ export default function Profile () {
             console.log(e);
         }
     }
-    
+
+    const logout = () => {
+        sessionStorage.removeItem('User');
+        location.href='/';
+    }
 
     return (
         <div className="m-auto w-3/5 mt-8 p-4 min-w-fit">
@@ -52,8 +58,11 @@ export default function Profile () {
                 <div className=" w-full h-fit ml-4" id="NameHeader">
                     <p className="font-bold text-black text-3xl m-0 pb-0">{User?.FirstName+' '+User?.LastName}</p>
                     <p className="font-bold text-gray text-1xl pt-0 m-0 mt-[-10px]">{User?.Major} @ YU</p>
+                    <button onClick={logout}><FontAwesomeIcon className="text-gray" icon={faRightFromBracket}/></button>
                 </div>
             </div>
+
+            
 
             <div className="bg-white mt-8 p-4 rounded-md drop-shadow-md min-w-full">
                 <p className="font-bold text-2xl text-black">Personal Info</p>

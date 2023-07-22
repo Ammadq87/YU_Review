@@ -41,7 +41,7 @@ export default function Register () {
             <div className="mt-4">
                 <a 
                     className="text-blue font-bold"
-                    href="/">Have an account already?</a>
+                    href="/login">Have an account already?</a>
             </div>
 
             <div className="">
