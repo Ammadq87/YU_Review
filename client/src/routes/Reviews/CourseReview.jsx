@@ -3,13 +3,13 @@ import { faThumbsUp, faThumbsDown, faCircleCheck, faCircleXmark} from '@fortawes
 import Banner from "../../components/Banner/Banner";
 import Rating from "../../components/Rating/Rating";
 import CourseReviewModel from "../../models/CourseReviewModel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Notification from "../../components/Notification/Notification";
 
 const bannerConfig = {
     title:  `Reviewing: ${location?.href?.split('/')[5]?.split('-').splice(1,2).join('-')}`,
     subTitle: generateBannerSubtitle()
-}
+};
 
 export default function CourseReview() {
     const [liked, setLiked] = useState(false);
@@ -21,7 +21,13 @@ export default function CourseReview() {
     const [useful, setUsefulness] = useState(-1);
     const [submitted, setSubmitted] = useState(null);
     const [invalidForm, setInvalidForm] = useState(null);
+    const [alreadySubmitted, setAlreadySubmitted] = useState(false);
     const review = new CourseReviewModel();
+
+    const handleSetSubmitted = async () => {
+        const x = await review.checkSubmission();
+        setAlreadySubmitted(x > 0);            
+    }
 
     const handleSetUseful = (i) => {
         setUsefulness(i);
@@ -31,6 +37,10 @@ export default function CourseReview() {
         setDifficulty(i);
     };
 
+    useEffect(() => {        
+        handleSetSubmitted();
+    }, []);
+
     return (
         <div>
             <Banner data={bannerConfig}/>
@@ -39,28 +49,33 @@ export default function CourseReview() {
             >
                 <h1 className='ml-4 font-bold text-3xl'>Your Review</h1>
                 
+                {
+                    alreadySubmitted &&
+                    <p className="text-red w-fit ml-4 text-sm">* You have already submitted a review. Your previous review will be overwritten with your latest ratings *</p>
+                }
+
                 {/* //ToDo: Search input has to be updated so that it can provides a list of professors to choose from */}
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
                     <p className="text-black font-semibold">Professor:</p>
                     <input onChange={(e) => setProf(e.target.value)} type="text" placeholder="Professor Name" className="my-2 w-4/5 border border-lightgray p-2 rounded-sm block"/>
-                    {prof && 
-                    <p className="text-sm">Want to rate
-                        <a className="text-blue font-bold"
-                        href="/"> {prof}</a>?
-                    </p>
+                    
+                    {
+                        prof && 
+                        <p className="text-sm">Want to rate
+                            <a className="text-blue font-bold"
+                            href="/"> {prof}</a>?
+                        </p>
                     }
-                </div>
 
+                </div>
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
                     <p className="text-black font-semibold">How Difficult was {bannerConfig?.title.split(' ')[1]}? <span className="text-red">*</span></p>
                     <Rating type={'Difficulty'} setValue={handleSetDifficulty} />
                 </div>
-
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
                     <p className="text-black font-semibold">How useful was {bannerConfig?.title.split(' ')[1]}? <span className="text-red">*</span></p>
                     <Rating type={'Useful'} setValue={handleSetUseful} />
                 </div>
-
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray flex items-center justify-between">
                     <p className="w-fit text-black font-semibold">Liked {bannerConfig?.title.split(' ')[1]}?</p>
                     <div className="ml-8">
@@ -70,7 +85,6 @@ export default function CourseReview() {
                         type="button"><FontAwesomeIcon icon={faThumbsDown} onClick={() => {setLiked(!liked)}} style={{color: !liked ? '#E31837' : '#747474'}}/></button>
                     </div>
                 </div>
-
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray flex items-center justify-between">
                     <p className="w-fit text-black font-semibold">Did you retake?</p>
                     <div className="ml-8">
@@ -80,7 +94,6 @@ export default function CourseReview() {
                         type="button"><FontAwesomeIcon icon={faCircleXmark} className="bg-white rounded-full" onClick={() => {setRetake(!retake)}} style={{color: !retake ? '#E31837' : '#747474'}}/></button>
                     </div>
                 </div>
-
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray flex items-center justify-between">
                     <p className="text-black font-semibold">Would you recommend {bannerConfig?.title.split(' ')[1]}?</p>
                     <div className="ml-8">
@@ -90,7 +103,6 @@ export default function CourseReview() {
                         type="button"><FontAwesomeIcon icon={faCircleXmark} className="bg-white rounded-full" onClick={() => {setRecommend(!recommend)}} style={{color: !recommend ? '#E31837' : '#747474'}}/></button>
                     </div>
                 </div>
-
                 <div className="m-4 p-4 w-3/5 shadow-md rounded-sm border border-lightgray">
                     <p className="text-black font-semibold">Your Comments: <span className="text-red">*</span></p>
                     <div className="mt-2 h-48 border border-lightgray rounded-sm">
@@ -99,7 +111,6 @@ export default function CourseReview() {
                         ></textarea>
                     </div>
                 </div>
-
                 <button 
                     type="button"
                     className="ml-4 p-4 font-bold text-lg px-8 py-2 bg-blue text-white m-4"
@@ -121,24 +132,26 @@ export default function CourseReview() {
                         }
                     }}
                 >Add Review</button>
-
-                {submitted &&
-                <Notification data={{type: 'success', text:'Review Submitted!'}}/>
+                
+                {
+                    submitted &&
+                    <Notification data={{type: 'success', text:'Review Submitted!'}}/>
                 }
-
-                {submitted === false &&
-                <Notification data={{type: 'error', text:'Something went wrong!'}}/>
+                
+                {
+                    submitted === false &&
+                    <Notification data={{type: 'error', text:'Something went wrong!'}}/>
                 }
-
-                {invalidForm &&
-                <Notification data={{type: 'error', text:'Please fill out the required fields'}}/>
+                
+                {
+                    invalidForm &&
+                    <Notification data={{type: 'error', text:'Please fill out the required fields'}}/>
                 }
             </form>
         </div>
     )
 }
 
-// ToDo: Fill out map with other values
 function generateBannerSubtitle() {
     const dept = location?.href?.split('/')[5]?.substring(0, 2);
     const map = {

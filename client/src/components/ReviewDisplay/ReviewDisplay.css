@@ -1,13 +1,16 @@
 .ReviewDisplay {
     /* border: 1px solid red; */
-    background-color: white;
     display: flex;
-    width: 40%;
+    justify-content: space-between; /* Add this to position the ratingContainer to the right */
+    width: 65%;
     margin: auto;
     border-radius: 5px;
     box-shadow: 0px 4px 4px #b3b3b3;
     margin-top: 16px;
     min-width: 600px;
+    border: 1px solid lightgray;
+    margin-left: 8px;
+    background-color: white;
 }
 
 .ReviewDisplay > .profileDisplay {
@@ -20,18 +23,25 @@
 .ReviewDisplay > .profileDisplay > img {
     border-radius: 100%;
     width: 96px;
-    width: 96px;
+    height: 96px;
+    min-width: 96px;
     /* border: 1px solid gray; */
     filter: drop-shadow(1px 1px 1px black);
 }
 
-.ReviewDisplay > .reviewContainer > .container  {
-    /* border: 1px solid green; */
+.ReviewDisplay > .reviewContainer {
     display: flex;
+  flex-grow: 1;
+}
+
+.ReviewDisplay > .reviewContainer > .container  {
+    display: flex;
+    width: 100%;
 }
 
 .ReviewDisplay > .reviewContainer > .container > .contentContainer {
     /* border: 1px solid black; */
+    min-width: 70%;
 }
 
 .ReviewDisplay > .reviewContainer > .container > .contentContainer > .header {
@@ -65,21 +75,23 @@
     display: block;
 }
 
-.ReviewDisplay > .reviewContainer > .container > .ratingContainer {
+.ReviewDisplay > .reviewContainer > .ratingContainer {
     /* border: 1px solid yellow; */
     padding-right: 16px;
     padding-left: 16px;
     padding-top: 16px;
+    /* margin-right: 0%; */ /* Remove this line */
+    min-width: 175px;
 }
 
-.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating {
+.ReviewDisplay > .reviewContainer > .ratingContainer > .rating {
     /* border: 1px solid orange; */
     display: flex;
     margin-bottom: 8px;
     align-items: center;
 }
 
-.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating > .ratingBox {
+.ReviewDisplay > .reviewContainer > .ratingContainer > .rating > .ratingBox {
     width: 32px;
     height: 32px;
     border-radius: 5px;
@@ -89,7 +101,7 @@
     text-align: center;
 }
 
-.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating > .ratingBox > p {
+.ReviewDisplay > .reviewContainer > .ratingContainer > .rating > .ratingBox > p {
     position: relative;
     top: 50%;
     left: 50%;
@@ -99,7 +111,7 @@
     color: white;
 }
 
-.ReviewDisplay > .reviewContainer > .container > .ratingContainer > .rating > .ratingTitle {
+.ReviewDisplay > .reviewContainer > .ratingContainer > .rating > .ratingTitle {
     font-weight: 500;
     color: #747474;
     padding-left: 8px;

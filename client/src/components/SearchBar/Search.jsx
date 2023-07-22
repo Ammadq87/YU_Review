@@ -4,6 +4,7 @@ import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+//ToDo: Implement search review view
 export default function Search (props) { 
     const [displayResults, setDisplayResults] = useState(true);
     const [results, setResults] = useState(['a', 'b', 'c', 'd', 'e']);
@@ -68,7 +69,7 @@ export default function Search (props) {
 */
     return (
 
-        <div className='w-full block items-center relative'>
+        <div className='w-full block items-center relative mx-4'>
 
             <div className='flex items-center w-full mt-4'>
                 <FontAwesomeIcon 
