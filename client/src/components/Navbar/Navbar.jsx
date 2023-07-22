@@ -17,39 +17,16 @@ export default function Navbar () {
                     <li className='mx-2 w-full text-right'><a href="/register" className="link" style={{color: '#E31837'}}>Register</a></li>
                     <li className='mx-2 w-full text-right'><a href="/login" className="link" style={{color: '#E31837'}}>Login</a></li>
                 </ul>
-    }
+    };
 
     return (
-
         <div className='w-full bg-white min-w-full'>
-
             <div className='w-3/5 m-auto flex min-w-fit'>
-
                 <p className='w-fit text-left min-w-fit mr-2 my-6'>
                     <a className='link' href='/' style={{color: 'black'}}><span style={{color:'#E31837'}}>YU</span> Reviews</a></p>
-
                 <Search/>
-
                 {Links()}
-
             </div>
-
         </div>
-
-        // <div className="Navbar">
-        //     <div className="NavbarContainer">
-        //         <div className="siteLogo">
-        //             <h3><a className='link' href='/' style={{color: 'black'}}><span style={{color:'#E31837'}}>YU</span> Reviews</a></h3>
-        //         </div>
-                
-        //         <Search data={[]}/>
-
-        //         <div className="links">
-        //             {Links()}
-        //         </div>
-        //     </div>
-
-            
-        // </div>
     )
 }

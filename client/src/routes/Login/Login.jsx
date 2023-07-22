@@ -40,19 +40,16 @@ export default function Login () {
                 <div>
                     <p className="font-bold text-3xl">Login</p>
                 </div>
-
                 <div className="w-full m-auto">
                     <input 
                         className={`w-full bg-lightgray text-lg p-2 mt-4 font-bold`}
                         type="email" placeholder="Email" onChange={(e) => handleFormInput('email', e.target.value)} required/>
                 </div>
-
                 <div className="w-full m-auto">
                     <input 
                         className={`w-full bg-lightgray text-lg p-2 mt-4 font-bold`}
                         type="password" placeholder="Password" onChange={(e) => handleFormInput('password', e.target.value)} required/>
                 </div>
-
                 <div className="mt-4 min-w-max">
                     <a 
                         className="text-blue font-bold"
@@ -61,11 +58,9 @@ export default function Login () {
                         className="text-blue font-bold float-right"
                         href="/">Forgot Password?</a>
                 </div>
-
                 <div className="m-auto text-left mt-2">
                     <p className="text-sm text-red font-semibold">{message}</p>
                 </div>
-
                 <div className="">
                     <button
                         className="bg-red px-8 py-2 mt-4 font-bold text-white hover:bg-lightred transition delay-50 active:transform active:scale-95"
@@ -75,6 +70,5 @@ export default function Login () {
                 </div>
             </form>
         </div>
-
     )
 }

@@ -8,8 +8,9 @@ import axios from "axios";
 const bannerConfig = {
     title: convertCourseUrlToBannerTitle(location.href),
     subTitle: 'Software Design'
-}
+};
 
+//ToDo: will have to add some sort of pagination for multiple reviews
 export default function Course () {
 
     const [showLoginNotification, setShowLoginNotification] = useState(null);
@@ -19,8 +20,6 @@ export default function Course () {
         baseURL: 'http://localhost:3000/api'
     });
 
-
-   
     useEffect(() => {
         getReviews();
     }, [])
@@ -56,14 +55,10 @@ export default function Course () {
         <div className="Course">
             <Banner data={bannerConfig}/>
             <div className="border border-black w-3/5 m-auto">
-
-
-
                 <div className="p-2" id="actionCenter">
                     <button className="py-4 px-2 font-bold text-white bg-red shadow-md"
                         onClick={() => {addReview()}}>Add Your Review</button>
                 </div>
-
                 <div className="ml-0">
                     {
                         reviews.map((r, i) => {
@@ -71,13 +66,10 @@ export default function Course () {
                         })
                     }
                 </div>
-
-                
                 {
                     showLoginNotification !== null &&
                     <Notification data={showLoginNotification}/>
                 }
-
             </div>
         </div>
     )

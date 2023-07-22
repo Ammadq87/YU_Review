@@ -8,7 +8,6 @@ import axios from 'axios';
 //ToDo: Fix 'overall' square color
 //ToDo: Have to abstract the component to make it re-usable for ProfessorReview 
 export default function ReviewDisplay (props) {
-
     const {type, data} = props;
     const ratings = generateRatings(type, data);
     const overall = calculateOverall(ratings);
@@ -39,15 +38,12 @@ export default function ReviewDisplay (props) {
                 <img src="https://static.wixstatic.com/media/a6f9ad_e3c88e2e841c485c81897314c83ff5f9~mv2.png/v1/fit/w_2500,h_1330,al_c/a6f9ad_e3c88e2e841c485c81897314c83ff5f9~mv2.png" alt="" />
             </div>       
             <div className="reviewContainer">
-
                 <div className="container">
                     <div className="contentContainer">
-                    
                         <div className="header">
                             <p className="name">{data['Author']}</p>
                             <p className="subTitle">{data['Major']} @ YU • {formatDate(data['DaysSincePost'])}</p>
                         </div>
-                    
                         <div className="review">
                             <p>
                                 {data['Review']}
@@ -61,12 +57,12 @@ export default function ReviewDisplay (props) {
                                     — taught by <a className='text-[#F7DB89] italic mt-1 font-semibold' href={`/professor/${formatProfLink(data['ProfessorName'])}`}>{data['ProfessorName']}</a>
                                 </p>
                             }
+
                         </div>
-                    
                     </div>
                 </div>
-
                 <div className="ratingContainer">
+
                     {
                         ratings.map((rating, i) => {
                             return GenerateRating(rating.title, rating.value, i);
@@ -81,8 +77,6 @@ export default function ReviewDisplay (props) {
                             <FontAwesomeIcon icon={faTrashCan}/>
                         </button>
                     }
-                    {/* <p className='border border-black text-sm font-medium text-darkgray'><span className='text-red'>*</span>Delete Review</p> */}
-
                 </div>
             </div>
         </div>
@@ -189,5 +183,4 @@ const GenerateRating = (title, value, i) => {
             </p>
         </div>
     )
-
 }

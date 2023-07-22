@@ -36,20 +36,3 @@ export default function Notification (props) {
         </div>
     );
 }
-
-// export default function Notification (props) {
-//     const {title, text, code} = props.data;
-//     const icons = [<FontAwesomeIcon icon={faCircleExclamation}/>, <FontAwesomeIcon icon={faCircleCheck}/>]
-//     let _code = (0 > code || code >= icons.length) ? 0 : code;
-
-//     return (
-//         <div className="Notification">
-//             <header>
-//                 <h3>{title}</h3>
-//                 {icons[_code]}
-//             </header>
-//             <p>{text}</p>
-//         </div>
-//     )
-
-// }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import Notification from '../../components/Notification/Notification';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
 
@@ -61,12 +60,8 @@ export default function Profile () {
                     <button onClick={logout}><FontAwesomeIcon className="text-gray" icon={faRightFromBracket}/></button>
                 </div>
             </div>
-
-            
-
             <div className="bg-white mt-8 p-4 rounded-md drop-shadow-md min-w-full">
                 <p className="font-bold text-2xl text-black">Personal Info</p>
-
                 <table>
                     <tbody>
                         <tr className="mt-2 w-full flex">
@@ -136,7 +131,6 @@ export default function Profile () {
                                     onBlur={() => handleNewUserInfo()} />
                             </td>
                         </tr>
-
                         <tr>
                             <td>
                                 {
@@ -144,14 +138,9 @@ export default function Profile () {
                                 }
                             </td>
                         </tr>
-                        
                     </tbody>
                 </table>
-
             </div>
-
-
         </div>
     )
 } 
-

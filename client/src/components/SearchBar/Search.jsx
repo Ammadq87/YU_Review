@@ -4,6 +4,7 @@ import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+//ToDo: Implement search review view
 export default function Search (props) { 
     const [displayResults, setDisplayResults] = useState(true);
     const [results, setResults] = useState(['a', 'b', 'c', 'd', 'e']);
