@@ -5,6 +5,7 @@ import Rating from "../../components/Rating/Rating";
 import CourseReviewModel from "../../models/CourseReviewModel";
 import { useEffect, useState } from "react";
 import Notification from "../../components/Notification/Notification";
+import Error from "../Error/Error";
 
 const bannerConfig = {
     title:  `Reviewing: ${location?.href?.split('/')[5]?.split('-').splice(1,2).join('-')}`,
@@ -12,6 +13,16 @@ const bannerConfig = {
 };
 
 export default function CourseReview() {
+
+    let User = JSON.parse(sessionStorage.getItem('User'));
+    if (!User)
+        return (
+            <div>
+                <Error/>
+            </div>
+        )
+
+
     const [liked, setLiked] = useState(false);
     const [retake, setRetake] = useState(false);
     const [recommend, setRecommend] = useState(false);
