@@ -42,6 +42,40 @@ class courseDAO extends Connection {
             );
         });
     }
+
+    static searchCourse(code) {
+        Connection.checkConnection();
+        return new Promise((resolve, reject) => {
+            Connection.getConnection().query(
+                `
+                SELECT ID
+                FROM Course
+                WHERE ID LIKE '%${code}%'
+                ORDER BY Relevance DESC
+                LIMIT 4;
+                `, (err, results) => {
+                    if (err) reject('Something went wrong. Could not find course');
+                    resolve(results);
+                }
+            );
+        });   
+    }
+
+    static UpdateCourseRelevance(code) {
+        Connection.checkConnection();
+        return new Promise((resolve, reject) => {
+            Connection.getConnection().query(
+                `
+                SELECT UpdateCourseRelevance(?)
+                `, [
+                    code
+                ], (err, results) => {
+                    if (err) reject('Something went wrong. Could not update course relevance');
+                    resolve(results);
+                }
+            );
+        });  
+    }
 }
 
 module.exports = courseDAO;

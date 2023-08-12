@@ -25,7 +25,8 @@ CREATE TABLE Course (
 	Subject VARCHAR(2),
     Department VARCHAR(10),
     Code VARCHAR(10),
-    Credit DECIMAL
+    Credit DECIMAL,
+    Relevance BIGINT DEFAULT 0
 );
 
 CREATE TABLE Professor (

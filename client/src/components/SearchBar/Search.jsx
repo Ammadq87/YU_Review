@@ -1,4 +1,4 @@
-import './Search.css'
+// import './Search.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
@@ -6,7 +6,7 @@ import axios from 'axios';
 
 //ToDo: Implement search review view
 export default function Search (props) { 
-    const [displayResults, setDisplayResults] = useState(true);
+    const [displayResults, setDisplayResults] = useState(false);
     const [results, setResults] = useState(['a', 'b', 'c', 'd', 'e']);
 
 
@@ -83,7 +83,7 @@ export default function Search (props) {
                 />
             </div>
 
-            {/* <div className='flex border z-50 absolute bg-white w-full'
+            <div className='flex border z-50 absolute bg-white w-full'
                 id='results' 
                 style={{display: displayResults ? 'block' : 'none'}}
             >
@@ -96,7 +96,7 @@ export default function Search (props) {
                     })}
                     <li><a href='/'>Explore more here!</a></li>
                 </ul>
-            </div> */}
+            </div>
 
         </div>
 

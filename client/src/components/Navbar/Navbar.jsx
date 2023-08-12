@@ -2,6 +2,7 @@ import './Navbar.css'
 import Search from '../SearchBar/Search'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell} from '@fortawesome/free-solid-svg-icons'
+import NewSearch from '../SearchBar/NewSearch'
 
 export default function Navbar () {
     const User = JSON.parse(sessionStorage.getItem('User'));
@@ -24,7 +25,7 @@ export default function Navbar () {
             <div className='w-3/5 m-auto flex min-w-fit'>
                 <p className='w-fit text-left min-w-fit mr-2 my-6'>
                     <a className='link' href='/' style={{color: 'black'}}><span style={{color:'#E31837'}}>YU</span> Reviews</a></p>
-                <Search/>
+                <NewSearch/>
                 {Links()}
             </div>
         </div>

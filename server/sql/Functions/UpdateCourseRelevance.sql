@@ -1,0 +1,12 @@
+DELIMITER %%
+CREATE FUNCTION UpdateCourseRelevance (CourseID VARCHAR(255)) RETURNS TINYINT DETERMINISTIC
+BEGIN
+
+	DECLARE r BIGINT;
+    SET r = (SELECT Relevance FROM Course WHERE ID = CourseID) + 1;
+	UPDATE Course
+    SET Relevance = r
+    WHERE ID = CourseID;
+    RETURN r;
+END %%
+DELIMITER ;
