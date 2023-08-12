@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
+import YourReviews from "./YourReviews/YourReviews";
 
 export default function Profile () {
     const User = JSON.parse(sessionStorage.getItem('User'))['User'];
@@ -33,10 +34,11 @@ export default function Profile () {
     const submitNewInfo = async () => {
         try {
             const updated = await database.post('/updateInfo', newUserDetails);
+            if (!updated)
+                alert('Error on submitting new profile changes');
+            
             if (updated['data'] === false) {
-                const notificationConfig = {
-                    
-                }
+                
             }
         } catch (e) {
             console.log(e);
@@ -141,6 +143,7 @@ export default function Profile () {
                     </tbody>
                 </table>
             </div>
+            <YourReviews/>
         </div>
     )
 } 
